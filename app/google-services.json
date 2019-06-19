@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "402246933722",
+    "firebase_url": "https://nothernarc-travel-app.firebaseio.com",
+    "project_id": "nothernarc-travel-app",
+    "storage_bucket": "nothernarc-travel-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402246933722:android:585e9eac3eb443c7",
+        "android_client_info": {
+          "package_name": "edu.itm.natravelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402246933722-odqaqpkcm9gkdonimvjjrm06hk453g4k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.itm.natravelapp",
+            "certificate_hash": "03e2c7c942ccdfd10ef6a4972ede5586369987e5"
+          }
+        },
+        {
+          "client_id": "402246933722-fb99cp3mo2r1rto09f060talpae7u8ov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBMxyZJ_IytvvzbuoGn0gLN5vWQfJQHO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402246933722-fb99cp3mo2r1rto09f060talpae7u8ov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,7 +12,7 @@
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"
+        android:src="@drawable/logo1"
         android:gravity="center"
         android:scaleType="centerInside"
         android:paddingRight="50dp"
@@ -23,7 +23,7 @@
 
     <TextView
         android:layout_above="@+id/card"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/name"
         android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
@@ -74,9 +74,9 @@
                     android:textColor="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="Official Mobile No."
                     android:textColorHint="@color/colorPrimary"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:background="@drawable/ed"
                     android:singleLine="true"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -101,10 +101,10 @@
                     android:textColor="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="OTP"
                     android:background="@drawable/ed"
                     android:textColorHint="@color/colorPrimary"
-                    android:inputType="textPassword"
+                    android:inputType="number"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
@@ -148,6 +148,23 @@
         android:elevation="10dp"
         android:layout_margin="20dp"
         android:adjustViewBounds="true"
+        android:src="@android:drawable/ic_dialog_email" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab1"
+        android:layout_below="@+id/fab"
+        android:foregroundGravity="right"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:onClick="login"
+        android:clickable="true"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:backgroundTint="@color/colorPrimary"
+        android:elevation="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/rightarrow" />
 
     <TextView
@@ -155,7 +172,7 @@
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/colorPrimary"
-        android:text="No Account? Contact NvrSettle!"
+        android:text="No Account? Contact Admin!"
         android:layout_width="match_parent"
         android:textSize="15sp"
 
