@@ -48,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
 
     List<UsersModel> usersModelList = new ArrayList<>();
 
+    public String phoneNumber;
+
     private boolean mVerificationInProgress = false;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
@@ -78,8 +80,9 @@ public class LoginActivity extends AppCompatActivity {
         smsCodeVerificationField = findViewById(R.id.password_et);
         startVerficationButton = findViewById(R.id.fab);
         verifyPhoneButton = findViewById(R.id.fab1);
-
         startVerficationButton.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
 
@@ -89,14 +92,32 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 flag = 0;
-                for( UsersModel user : usersModelList){
-                    if(user.getMobile().equals(phoneNumberField.getText().toString())){
-                        flag =1;
+
+                String getEmailId = phoneNumberField.getText().toString();
+
+// Check if email id is valid or not
+                if (!isEmailValid(getEmailId)){
+                    phoneNumber = getEmailId;
+
+                    for( UsersModel user : usersModelList){
+                        if(user.getMobile().equals(phoneNumber)){
+                            flag =1;
+                        }
                     }
+
+                }else{
+
+                    for( UsersModel user : usersModelList){
+                        if(user.getEmail().equals(phoneNumberField.getText().toString())){
+                            flag =1;
+                            phoneNumber = user.getMobile();
+                        }
+                    }
+
                 }
 
                 if(flag==1){
-                    startPhoneNumberVerification(phoneNumberField.getText().toString());
+                    startPhoneNumberVerification(phoneNumber);
                 }else{
                     Toast.makeText(getApplicationContext(),"Your Number Not registered please contact Admin",Toast.LENGTH_SHORT).show();
                 }
@@ -152,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                     this,               // Activity (for callback binding)
                     mCallbacks);        // OnVerificationStateChangedCallbacks
 
-            Toast.makeText(getApplicationContext(),"OTP, if not recived request in 30 sec.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"OTP, if not received request in 30 sec.",Toast.LENGTH_SHORT).show();
 
 
         }
@@ -254,5 +275,9 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
 
+
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
 
 }
