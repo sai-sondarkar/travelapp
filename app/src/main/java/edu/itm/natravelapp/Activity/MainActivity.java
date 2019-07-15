@@ -1,4 +1,4 @@
-package edu.itm.natravelapp;
+package edu.itm.natravelapp.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import edu.itm.natravelapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

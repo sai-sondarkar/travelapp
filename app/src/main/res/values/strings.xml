@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NA Travel App</string>
+
+
+    <string name="date_picker_result_value">Year: %1$s\nMonth: %2$s\nDay: %3$s</string>
+
 </resources>

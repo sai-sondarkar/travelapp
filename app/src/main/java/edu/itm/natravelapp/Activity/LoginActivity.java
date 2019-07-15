@@ -1,4 +1,4 @@
-package edu.itm.natravelapp;
+package edu.itm.natravelapp.Activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -8,10 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -32,8 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import edu.itm.natravelapp.FirebaseExtra.FirebaseInfo;
 import edu.itm.natravelapp.FirebaseExtra.FirebaseInit;
+import edu.itm.natravelapp.R;
+import edu.itm.natravelapp.Model.UsersModel;
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -76,6 +75,10 @@ public class LoginActivity extends AppCompatActivity {
         //intialized firebase auth
         mAuth = FirebaseAuth.getInstance();
 
+
+
+        Paper.init(getApplicationContext());
+
         phoneNumberField = findViewById(R.id.email_et);
         smsCodeVerificationField = findViewById(R.id.password_et);
         startVerficationButton = findViewById(R.id.fab);
@@ -102,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     for( UsersModel user : usersModelList){
                         if(user.getMobile().equals(phoneNumber)){
                             flag =1;
+                            Paper.book().write("user",user);
                         }
                     }
 
@@ -111,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(user.getEmail().equals(phoneNumberField.getText().toString())){
                             flag =1;
                             phoneNumber = user.getMobile();
+                            Paper.book().write("user",user);
                         }
                     }
 
@@ -118,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(flag==1){
                     startPhoneNumberVerification(phoneNumber);
+
                 }else{
                     Toast.makeText(getApplicationContext(),"Your Number Not registered please contact Admin",Toast.LENGTH_SHORT).show();
                 }
@@ -139,6 +145,10 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onStart() {
             super.onStart();
+
+            // Check if user is signed in (non-null) and update UI accordingly.
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            updateUI(currentUser);
 
             mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                 @Override
@@ -279,5 +289,22 @@ public class LoginActivity extends AppCompatActivity {
     boolean isEmailValid(CharSequence email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
+
+
+
+
+
+    public void updateUI(FirebaseUser user){
+
+        if(user!=null){
+            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+
+
+
 
 }

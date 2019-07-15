@@ -1,4 +1,4 @@
-package edu.itm.natravelapp;
+package edu.itm.natravelapp.Model;
 
 import java.util.Objects;
 
@@ -7,6 +7,15 @@ public class UsersModel {
     public String name;
     public String mobile;
     public String email;
+    public String reportingManager;
+
+    public String getReportingManager() {
+        return reportingManager;
+    }
+
+    public void setReportingManager(String reportingManager) {
+        this.reportingManager = reportingManager;
+    }
 
     public UsersModel() {
     }
