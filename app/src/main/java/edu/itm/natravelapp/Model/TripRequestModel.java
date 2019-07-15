@@ -1,7 +1,12 @@
 package edu.itm.natravelapp.Model;
 
+import java.util.Objects;
+
 public class TripRequestModel {
 
+
+
+    String key;
     String name;
     String mobileNo;
     String email;
@@ -20,6 +25,37 @@ public class TripRequestModel {
     String stay;
     String reason;
     String layOverTime;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TripRequestModel that = (TripRequestModel) o;
+        return Objects.equals(key, that.key);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key);
+    }
+
+    long timeStamp;
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getLayOverTime() {
         return layOverTime;

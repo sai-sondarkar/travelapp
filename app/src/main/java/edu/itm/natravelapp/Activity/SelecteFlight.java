@@ -15,12 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import dev.jai.genericdialog2.GenericDialog;
 import dev.jai.genericdialog2.GenericDialogOnClickListener;
@@ -41,7 +39,7 @@ import retrofit2.Response;
 public class SelecteFlight extends AppCompatActivity {
 
     String date,to,from;
-    LinearLayout li;
+
     RecyclerView recyclerViewForTrips;
 
     String accommadate,cab, reason;
@@ -57,7 +55,7 @@ public class SelecteFlight extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecte_flight);
 
-        li = (LinearLayout) findViewById(R.id.li);
+
         recyclerViewForTrips = (RecyclerView) findViewById(R.id.recycler_view);
 
 
@@ -179,7 +177,12 @@ public class SelecteFlight extends AppCompatActivity {
     public void askReason(){
 
         final EditText taskEditText = new EditText(this);
-        taskEditText.setPadding(10,10,10,10);
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(10, 10, 10, 10);
+
+        taskEditText.setLayoutParams(lp);
+
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("selected higher priced flight !")
@@ -286,7 +289,7 @@ public class SelecteFlight extends AppCompatActivity {
             tripRequestModel.setReason(reason);
             tripRequestModel.setFare(travelModels.get(pos).getFare()+"");
             tripRequestModel.setApproved(false);
-            tripRequestModel.setReportingManager(usersModel.getReportingManager());
+            tripRequestModel.setReportingManager(usersModel.getReportingManagerEmail());
 
             if(travelModels.get(0).getFlightList().size()==1){
                 tripRequestModel.setArrivalTime(travelModels.get(pos).getFlightList().get(0).getArrivalTime());

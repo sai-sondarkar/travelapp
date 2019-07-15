@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.YourTripsActivity"></activity>
+        <activity android:name=".Activity.ApprovingActivity"></activity>
+        <activity android:name=".Activity.YourTripsActivity" />
         <activity android:name=".Activity.ConfirmActivity" />
         <activity android:name=".Activity.SelecteFlight" />
         <activity android:name=".Activity.HomeActivity" />

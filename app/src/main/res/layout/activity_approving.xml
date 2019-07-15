@@ -30,7 +30,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="3dp"
                 android:paddingTop="5dp"
-                android:text="Your Trips "
+                android:text="Team Members Trips to Approve"
                 android:textColor="#fff"
                 android:textAppearance="?android:textAppearanceLarge" />
 

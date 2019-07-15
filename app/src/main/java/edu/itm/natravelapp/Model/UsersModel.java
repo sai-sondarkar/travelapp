@@ -7,14 +7,14 @@ public class UsersModel {
     public String name;
     public String mobile;
     public String email;
-    public String reportingManager;
+    public String reportingManagerEmail;
 
-    public String getReportingManager() {
-        return reportingManager;
+    public String getReportingManagerEmail() {
+        return reportingManagerEmail;
     }
 
-    public void setReportingManager(String reportingManager) {
-        this.reportingManager = reportingManager;
+    public void setReportingManagerEmail(String reportingManagerEmail) {
+        this.reportingManagerEmail = reportingManagerEmail;
     }
 
     public UsersModel() {

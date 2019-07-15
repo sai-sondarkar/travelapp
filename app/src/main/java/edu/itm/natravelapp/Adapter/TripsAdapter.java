@@ -16,6 +16,8 @@ import java.util.List;
 import edu.itm.natravelapp.Model.TravelModel;
 import edu.itm.natravelapp.R;
 
+
+
 public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder> {
 
 
@@ -114,7 +116,7 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
             holder.to.setText("To "+travelModel.getFlightList().get(0).getArrivalCity());
             holder.fromTime.setText("Depart Time "+travelModel.getFlightList().get(0).getDepartTime());
             holder.toTime.setText("Arrival Time "+travelModel.getFlightList().get(0).getArrivalTime());
-           // holder.via.setText("Via "+travelModel.getFlightList().get(0).getArrivalCity());
+            // holder.via.setText("Via "+travelModel.getFlightList().get(0).getArrivalCity());
             //holder.layover.setText("Layover Time "+travelModel.getFlightList().get(0).getFlightLayover());
             holder.carrier.setText("Carrier "+travelModel.getFlightList().get(0).getCarrierName());
             holder.flightNo.setText("Flight No. "+travelModel.getFlightList().get(0).getFlightNo());
@@ -130,4 +132,3 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.MyViewHolder
     }
 
 }
-

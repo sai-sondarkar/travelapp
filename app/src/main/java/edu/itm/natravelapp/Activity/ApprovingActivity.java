@@ -8,6 +8,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -16,17 +18,16 @@ import com.google.firebase.database.DatabaseError;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.itm.natravelapp.Adapter.TripsAdapter;
+import dev.jai.genericdialog2.GenericDialog;
+import dev.jai.genericdialog2.GenericDialogOnClickListener;
 import edu.itm.natravelapp.Adapter.YourTripsAdapter;
 import edu.itm.natravelapp.FirebaseExtra.FirebaseInit;
-import edu.itm.natravelapp.Model.RequestModel;
-import edu.itm.natravelapp.Model.TravelModel;
 import edu.itm.natravelapp.Model.TripRequestModel;
 import edu.itm.natravelapp.Model.UsersModel;
 import edu.itm.natravelapp.R;
 import io.paperdb.Paper;
 
-public class YourTripsActivity extends AppCompatActivity {
+public class ApprovingActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewForTrips;
 
@@ -37,7 +38,7 @@ public class YourTripsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_your_trips);
+        setContentView(R.layout.activity_approving);
 
         recyclerViewForTrips = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -80,6 +81,12 @@ public class YourTripsActivity extends AppCompatActivity {
 //            Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
             pos =position;
 
+            askApproval(tripRequestModels.get(pos));
+
+
+
+
+
         }
     };
 
@@ -89,11 +96,14 @@ public class YourTripsActivity extends AppCompatActivity {
 
         UsersModel usersModel = Paper.book().read("user");
 
-        FirebaseInit.getDatabase().getReference().child("requests").orderByChild("mobileNo").equalTo(usersModel.getMobile()).addChildEventListener(new ChildEventListener() {
+        FirebaseInit.getDatabase().getReference().child("requests").orderByChild("reportingManager").equalTo(usersModel.getEmail()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
+
+
                 TripRequestModel tripRequestModel = dataSnapshot.getValue(TripRequestModel.class);
+                tripRequestModel.setKey(dataSnapshot.getKey());
                 tripRequestModels.add(tripRequestModel);
                 yourTripsAdapter.notifyDataSetChanged();
 
@@ -101,6 +111,19 @@ public class YourTripsActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                TripRequestModel tripRequestModel = dataSnapshot.getValue(TripRequestModel.class);
+                tripRequestModel.setKey(dataSnapshot.getKey());
+
+                if(tripRequestModels.contains(tripRequestModel)){
+                    pos = tripRequestModels.indexOf(tripRequestModel);
+                    tripRequestModels.remove(pos);
+
+                    tripRequestModels.add(pos,tripRequestModel);
+                    yourTripsAdapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getApplicationContext(),"NO",Toast.LENGTH_SHORT).show();
+                }
 
             }
 
@@ -119,9 +142,31 @@ public class YourTripsActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+
+    public void askApproval(final TripRequestModel requestModel){
+
+        new GenericDialog.Builder(this)
+                .setTitle("Approve Trip ?").setTitleAppearance(R.color.colorPrimaryDark, 16)
+                .setMessage("Would you like to Approve the Selected Trip ? - \n Rs. " + requestModel.getFare() + " \n Depart - "+requestModel.getFrom() +"\n Arrival - "+requestModel.getTo()+" \nFare - "+ requestModel.getFare() + " \nName - "+requestModel.getName())
+                .addNewButton(R.style.ApproveTrip, new GenericDialogOnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        FirebaseInit.getDatabase().getReference().child("requests").child(requestModel.getKey()).child("isApproved").setValue(true);
+                        Toast.makeText(getApplicationContext(),"Trip Approved !",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addNewButton(R.style.NotApproveTrip, new GenericDialogOnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                })
+
+                .setButtonOrientation(LinearLayout.HORIZONTAL)
+                .setCancelable(false)
+                .generate();
 
     }
 }
-
-

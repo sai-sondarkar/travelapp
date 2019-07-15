@@ -59,5 +59,21 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="ApproveTrip">
+        <item name="android:text">Approve Trip</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="NotApproveTrip">
+        <item name="android:text">Cancel</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 
 </resources>
