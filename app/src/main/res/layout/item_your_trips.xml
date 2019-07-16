@@ -23,6 +23,13 @@
             android:weightSum="5"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameTx"
+                android:textStyle="bold"
+                android:padding="10dp"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

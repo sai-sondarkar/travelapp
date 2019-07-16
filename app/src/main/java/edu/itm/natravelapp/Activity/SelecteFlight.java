@@ -291,7 +291,11 @@ public class SelecteFlight extends AppCompatActivity {
             tripRequestModel.setApproved(false);
             tripRequestModel.setReportingManager(usersModel.getReportingManagerEmail());
 
-            if(travelModels.get(0).getFlightList().size()==1){
+
+            Toast.makeText(getApplicationContext(),""+travelModels.get(pos).getFlightList().size(),Toast.LENGTH_SHORT).show();
+
+            if(travelModels.get(pos).getFlightList().size()==1){
+
                 tripRequestModel.setArrivalTime(travelModels.get(pos).getFlightList().get(0).getArrivalTime());
                 tripRequestModel.setDepartTime(travelModels.get(pos).getFlightList().get(0).getDepartTime());
                 tripRequestModel.setTo(travelModels.get(pos).getFlightList().get(0).getArrivalCity());
@@ -301,7 +305,11 @@ public class SelecteFlight extends AppCompatActivity {
                 tripRequestModel.setVia("");
                 tripRequestModel.setLayOverTime("");
 
-            }else if(travelModels.get(0).getFlightList().size()==2){
+                FirebaseInit.getDatabase().getReference().child("requests").push().setValue(tripRequestModel);
+                Toast.makeText(getApplicationContext(),"Travel Request Sent",Toast.LENGTH_SHORT).show();
+                finish();
+
+            }else if(travelModels.get(pos).getFlightList().size()==2){
                 tripRequestModel.setDepartTime(travelModels.get(pos).getFlightList().get(0).getDepartTime());
                 tripRequestModel.setArrivalTime(travelModels.get(pos).getFlightList().get(1).getArrivalTime());
                 tripRequestModel.setTo(travelModels.get(pos).getFlightList().get(1).getArrivalCity());
@@ -311,11 +319,17 @@ public class SelecteFlight extends AppCompatActivity {
                 tripRequestModel.setVia(travelModels.get(pos).getFlightList().get(0).getArrivalCity());
                 tripRequestModel.setLayOverTime(travelModels.get(pos).getFlightList().get(0).getFlightLayover()+"");
 
+
+                FirebaseInit.getDatabase().getReference().child("requests").push().setValue(tripRequestModel);
+                Toast.makeText(getApplicationContext(),"Travel Request Sent",Toast.LENGTH_SHORT).show();
+                finish();
+
+            }else{
+                Toast.makeText(getApplicationContext(),"Travel Request NOT Sent, Try Again ",Toast.LENGTH_SHORT).show();
+
             }
 
 
-            FirebaseInit.getDatabase().getReference().child("requests").push().setValue(tripRequestModel);
-            finish();
         }
 
 

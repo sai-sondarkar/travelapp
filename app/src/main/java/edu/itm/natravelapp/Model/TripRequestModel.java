@@ -14,7 +14,7 @@ public class TripRequestModel {
     String to;
     String departTime;
     String arrivalTime;
-    boolean isApproved;
+    boolean approved;
     String reportingManager;
     String fare;
     String via;
@@ -125,11 +125,11 @@ public class TripRequestModel {
     }
 
     public boolean isApproved() {
-        return isApproved;
+        return approved;
     }
 
     public void setApproved(boolean approved) {
-        isApproved = approved;
+        this.approved = approved;
     }
 
     public String getReportingManager() {

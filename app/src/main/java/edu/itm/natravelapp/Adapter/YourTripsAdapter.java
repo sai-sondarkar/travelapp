@@ -29,7 +29,7 @@ private View.OnClickListener mOnItemClickListener;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-    public TextView from, to, fromTime, toTime, carrier, flightNo,via, layover, clas, price, cab, stay, colorText ;
+    public TextView from, to, fromTime, toTime, carrier, flightNo,via, layover, clas, price, cab, stay, colorText, name;
     public CardView cardView;
 
 
@@ -50,6 +50,7 @@ private View.OnClickListener mOnItemClickListener;
         cab = (TextView) view.findViewById(R.id.cab);
         stay = (TextView) view.findViewById(R.id.stay);
         colorText = (TextView) view.findViewById(R.id.colorText);
+        name = (TextView) view.findViewById(R.id.nameTx);
         cardView = (CardView) view.findViewById(R.id.card1);
 
 
@@ -126,6 +127,8 @@ private View.OnClickListener mOnItemClickListener;
             holder.flightNo.setText("Flight No. "+travelModel.getFlightNo());
             holder.cab.setText("CAB - "+travelModel.getCab());
             holder.stay.setText("Stay - "+travelModel.getStay());
+
+            holder.name.setText("Name - "+travelModel.getName());
 
 
             if(travelModel.isApproved()){
