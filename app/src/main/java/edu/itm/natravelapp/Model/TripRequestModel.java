@@ -15,6 +15,7 @@ public class TripRequestModel {
     String departTime;
     String arrivalTime;
     boolean approved;
+    int approval; //0,1,2
     String reportingManager;
     String fare;
     String via;
@@ -25,6 +26,10 @@ public class TripRequestModel {
     String stay;
     String reason;
     String layOverTime;
+    String cabTiming;
+
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -44,6 +49,24 @@ public class TripRequestModel {
     public long getTimeStamp() {
         return timeStamp;
     }
+
+    public String getCabTiming() {
+        return cabTiming;
+    }
+
+    public void setCabTiming(String cabTiming) {
+        this.cabTiming = cabTiming;
+    }
+
+
+    public int getApproval() {
+        return approval;
+    }
+
+    public void setApproval(int approval) {
+        this.approval = approval;
+    }
+
 
     public void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;

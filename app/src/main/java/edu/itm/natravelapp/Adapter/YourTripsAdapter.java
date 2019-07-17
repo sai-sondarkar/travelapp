@@ -131,15 +131,21 @@ private View.OnClickListener mOnItemClickListener;
             holder.name.setText("Name - "+travelModel.getName());
 
 
-            if(travelModel.isApproved()){
-                holder.clas.setText("APPROVED");
+            if(travelModel.getApproval()==0){
+                holder.clas.setText("APPROVAL PENDING");
+                holder.colorText.setBackgroundColor(ContextCompat.getColor(context, R.color.organe));
+                holder.clas.setTextColor(ContextCompat.getColor(context, R.color.organe));
+            }else  if(travelModel.getApproval()==1){
                 holder.colorText.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
                 holder.clas.setTextColor(ContextCompat.getColor(context, R.color.green));
-            }else{
+                holder.clas.setText("APPROVED");
+            }else {
                 holder.colorText.setBackgroundColor(ContextCompat.getColor(context, R.color.red));
                 holder.clas.setTextColor(ContextCompat.getColor(context, R.color.red));
-                holder.clas.setText("NOT APPROVED");
+                holder.clas.setText("Rejected");
             }
+
+
 
 
 

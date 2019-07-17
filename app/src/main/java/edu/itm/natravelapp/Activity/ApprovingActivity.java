@@ -153,7 +153,7 @@ public class ApprovingActivity extends AppCompatActivity {
                 .addNewButton(R.style.ApproveTrip, new GenericDialogOnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        FirebaseInit.getDatabase().getReference().child("requests").child(requestModel.getKey()).child("approved").setValue(true);
+                        FirebaseInit.getDatabase().getReference().child("requests").child(requestModel.getKey()).child("approval").setValue(1);
                         Toast.makeText(getApplicationContext(),"Trip Approved !",Toast.LENGTH_SHORT).show();
                     }
                 })

@@ -48,6 +48,7 @@ public class SelecteFlight extends AppCompatActivity {
 
     TripsAdapter tripsAdapter;
     List<TravelModel> travelModels = new ArrayList<>();
+    private String cabtime = "";
 
 
     @Override
@@ -253,13 +254,38 @@ public class SelecteFlight extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         cab = "Individual Cab";
-                        sendRequestToFB();
+                        askCabTiming();
                     }
                 })
                 .addNewButton(R.style.CabShareButton, new GenericDialogOnClickListener() {
                     @Override
                     public void onClick(View view) {
                         cab = "Share Cab";
+                        askCabTiming();
+                    }
+                })
+                .setButtonOrientation(LinearLayout.HORIZONTAL)
+                .setCancelable(false)
+                .generate();
+    }
+
+    public void askCabTiming(){
+
+        new GenericDialog.Builder(this)
+                .setTitle("Cab Support ?").setTitleAppearance(R.color.colorPrimaryDark, 16)
+                .setMessage("Would you like to have Cab Support whole day or part time?")
+                .addNewButton(R.style.CabPartTIme, new GenericDialogOnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cabtime = "Drop and Pickup only";
+                        sendRequestToFB();
+
+                    }
+                })
+                .addNewButton(R.style.CabFullTime, new GenericDialogOnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cabtime = "Whole Day Cab";
                         sendRequestToFB();
                     }
                 })
@@ -267,6 +293,7 @@ public class SelecteFlight extends AppCompatActivity {
                 .setCancelable(false)
                 .generate();
     }
+
 
 
     public void sendRequestToFB(){
@@ -286,13 +313,13 @@ public class SelecteFlight extends AppCompatActivity {
             tripRequestModel.setMobileNo(usersModel.getMobile());
             tripRequestModel.setStay(accommadate);
             tripRequestModel.setCab(cab);
+            tripRequestModel.setCabTiming(cabtime);
             tripRequestModel.setReason(reason);
             tripRequestModel.setFare(travelModels.get(pos).getFare()+"");
             tripRequestModel.setApproved(false);
+            tripRequestModel.setApproval(0);
             tripRequestModel.setReportingManager(usersModel.getReportingManagerEmail());
 
-
-            Toast.makeText(getApplicationContext(),""+travelModels.get(pos).getFlightList().size(),Toast.LENGTH_SHORT).show();
 
             if(travelModels.get(pos).getFlightList().size()==1){
 
