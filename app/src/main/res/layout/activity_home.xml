@@ -30,7 +30,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="3dp"
                 android:paddingTop="5dp"
-                android:text="Northern Arc Travel App"
+                android:text="ITM Travel App"
                 android:textColor="#fff"
                 android:textAppearance="?android:textAppearanceLarge" />
 
@@ -131,6 +131,7 @@
                 />
 
         </android.support.v7.widget.CardView>
+
 
     </LinearLayout>
 
